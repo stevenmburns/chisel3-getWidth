@@ -21,6 +21,7 @@ class Tester extends ChiselFlatSpec {
         when ( io.en) {
           w := 7.U
         }
+	assert( w.getWidth == 2)
         io.out := w
       }, "treadle") {
         c => new PeekPokeTester(c) {
@@ -36,8 +37,8 @@ class Tester extends ChiselFlatSpec {
         when ( io.en) {
           w := 7.U
         }
-	val caught = intercept[chisel3.internal.ChiselException]{ println( s"${w.getWidth}")}
-	println( caught)
+	val caught = intercept[chisel3.internal.ChiselException]{ w.getWidth}
+	assert( !("Width of.*is unknown".r).findFirstMatchIn(caught.getMessage).isEmpty)
         io.out := w
       }, "treadle") {
         c => new PeekPokeTester(c) {

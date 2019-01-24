@@ -27,7 +27,7 @@ def javacOptionsVersion(scalaVersion: String): Seq[String] = {
 }
 
 organization := "com.intel"
-name := "pg"
+name := "chisel3-getWidth"
 version := "0.1"
 
 scalaVersion := "2.12.6"
